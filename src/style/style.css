@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Bitstram Bold';
+  src: url('./fonts/my-font.ttf') format("truetype");
+  src: url('./fonts/my-font.otf');
+}
+body{
+  background-color: #C66868;
+}
+
+.hello{
+  color: red;
+  font-family: 'Bitstram Bold';
+}
