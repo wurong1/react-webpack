@@ -12,7 +12,7 @@
             path: path.resolve(__dirname, './dist'),
             filename: 'js/[name].js', // 必须设置
         },
-        devtool: 'source-map', //适用于生产环境，提高整体性能
+        //devtool: 'source-map', //适用于生产环境，提高整体性能
         plugins: [
             new UglifyJSPlugin({
               sourceMap: true,
@@ -22,7 +22,7 @@
                 PRODUCTION: true , // 或者使用JSON.stringify(false)
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: 'common' //指定公共bundle的名称
+                name: 'common' //将一些公共的模块提取到common.js
             })
         ]
     });

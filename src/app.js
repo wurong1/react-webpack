@@ -1,4 +1,4 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import './style/style.css';
 import printMe from './print';
 import Icon from './icon.PNG';

@@ -81,12 +81,17 @@ module.exports = {
                     publicPath: "../",
                     outputPath: 'stylesheets/fonts/', // 打包后在css引用路径为../stylesheets/fonts/filename
                 }
-            }
+            },
+            // {
+            //     test: require.resolve('./src/app.js'),
+            //     use: 'imports-loader?this=>this',
+            // }
         ]
     },
     plugins: [
         new htmlWebpackPlugin({
             template: 'index.html',
+            title: 'Caching',
             inject: 'body',
         }),
         extractCSS,
@@ -94,5 +99,8 @@ module.exports = {
         // HMR热替换
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            _: 'lodash' //用于创建一些需要被导出的全局变量，模块中通过访问'_'来获取lodash的package包
+        })
     ],
 }

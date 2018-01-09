@@ -3,11 +3,11 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 const path =require('path');
 module.exports = merge(common, {
-  entry: ['babel-polyfill','./src/app.js'],
+  entry: ['babel-polyfill','./src/app.js'], //babel-polyfill会转码es6的所有api，如Promise, Object.assign
   output: {
     path: path.resolve(__dirname, './dist'),
     chunkFilename: '[name].bundle.js',
-    filename: 'js/app.js', // 必须设置
+    filename: 'js/[name].[hash].js', // 必须设置
   },
     devtool: 'inline-source-map', // 将编译的代码映射回原始源代码
     devServer: {
