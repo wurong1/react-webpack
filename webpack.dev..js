@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 const path =require('path');
 module.exports = merge(common, {
-  entry: './src/app.js',
+  entry: ['babel-polyfill','./src/app.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     chunkFilename: '[name].bundle.js',
@@ -13,7 +13,7 @@ module.exports = merge(common, {
     devServer: {
       contentBase: path.join(__dirname, "dist"),
       open: true,        
-      port: 8000,
+      port: 8082,
       hot: true,
     },
     plugins: [
