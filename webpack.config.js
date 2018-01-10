@@ -3,16 +3,10 @@ const webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');// build之前清理dist目录中的文件
-const ExtractTextPlugin = require("extract-text-webpack-plugin"); //将css文件从js文件中提取出来
-// Create multiple instances
-const extractCSS = new ExtractTextPlugin({
-    filename: 'stylesheets/[name]-one.css',
-});
-const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 module.exports = {
     module: {
-        rules: [ //也可以用loaders:
+        rules: [ //也可以用loaders(webpack1.0):
             {
                 test: /\.js$/,
                 loader: "babel-loader", //可以添加问号设置参数，有多个loader使用use
@@ -25,13 +19,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: extractCSS.extract(['css-loader', 'postcss-loader']),
-                // use: [
-                //     'style-loader',
-                //     'css-loader?importLoaders=1',// 使用import，postcss才会处理在css中@import引入的css,1表示使用css-loader后面的1个loader(postcss)
-                //     'postcss-loader'
-                //     //loader: "style-loader!css-loader!postcss-loader", // 用!串联两个loader,postcss-loader autoprefixer可以样式添加浏览器前缀如webkit-,mozil-
-                // ]
+                use: [
+                    'style-loader',
+                    'css-loader?importLoaders=1',// 使用import，postcss才会处理在css中@import引入的css,1表示使用css-loader后面的1个loader(postcss)
+                    'postcss-loader'
+                    //loader: "style-loader!css-loader!postcss-loader", // 用!串联两个loader,postcss-loader autoprefixer可以样式添加浏览器前缀如webkit-,mozil-
+                ]
             },
             {
                 test: /\.less$/, //配置sass文件同理
@@ -94,7 +87,6 @@ module.exports = {
             title: 'Caching',
             inject: 'body',
         }),
-        extractCSS,
         new CleanWebpackPlugin(['dist']),
         new webpack.ProvidePlugin({
             _: 'lodash' //用于创建一些需要被导出的全局变量，模块中通过访问'_'来获取lodash的package包
