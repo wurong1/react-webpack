@@ -96,9 +96,6 @@ module.exports = {
         }),
         extractCSS,
         new CleanWebpackPlugin(['dist']),
-        // HMR热替换
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({
             _: 'lodash' //用于创建一些需要被导出的全局变量，模块中通过访问'_'来获取lodash的package包
         })

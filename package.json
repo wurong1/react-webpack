@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.prod.js --define xx='prod'",
-    "start": "webpack-dev-server --config webpack.dev..js --define xx='dev'",
+    "build": "webpack --config webpack.prod.js --define xx='prod' --env.NODE_ENV=production",
+    "start": "webpack-dev-server --config webpack.dev..js --define xx='dev' --env.NODE_ENV=local",
     "server": "node server.js"
   },
   "author": "",

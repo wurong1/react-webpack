@@ -14,7 +14,7 @@ function component(tag) {
     element.appendChild(myIcon);
     /* -----------------------button------------------------------ */
     let btn = document.createElement('button');
-    btn.innerHTML = 'Click me and check the console';
+    btn.innerHTML = 'Click me and check the console !!123';
     btn.onclick = printMe;
     element.appendChild(btn);
     /* ----------------------全局变量------------------------------ */
