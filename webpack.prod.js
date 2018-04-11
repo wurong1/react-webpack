@@ -1,24 +1,11 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // 缩小打包文件的体积
-const ExtractTextPlugin = require("extract-text-webpack-plugin"); //将css文件从js文件中提取出来
-// Create multiple instances
-const extractCSS = new ExtractTextPlugin({filename: 'stylesheets/[name]-one.css'});
-const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
-
 const common = require('./webpack.config.js');
 const path = require('path');
 module.exports = env => {
 		console.log('NODE_ENV: ', env.NODE_ENV);
 		return merge(common, {
-			module: {
-				rules: [
-					{
-							test: /\.css$/,
-							use: extractCSS.extract(['css-loader', 'postcss-loader'])
-					}
-				]
-			},
 			entry: {
 					app: './src/app.js',
 					another: './src/another-module',
@@ -48,7 +35,6 @@ module.exports = env => {
 							.CommonsChunkPlugin({
 									name: 'common' //将一些公共的模块(第三方库如lodash)提取到common.js，但是不包括上面已经提取的js
 							}),
-					extractCSS,
 			]
 	});
 }
